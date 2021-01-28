@@ -1,18 +1,24 @@
 import math
 import random
 
-file = open('inputD1P1.txt')
-nums = file.read().replace("\n", " ").split()
-file.close()
+file_path = "AOC_2020\\"
 
-num_1 = nums
-num_2 = nums
-x = random.choice(num_1)
-y = random.choice(num_2)
-sum = x + y
+with open(f'{file_path}Day1\\Part1\\inputD1P1.txt', 'r') as f:
+    nums = f.read().split('\n')
 
-while sum != 2020:
-    x = random.choice(num_1)
-    y = random.choice(num_2)
-    sum = x + y
-    print(str(x), '+', str(y), '=', str(sum))
+num_1 = nums[:]
+num_2 = nums[:]
+
+
+def find_sum():
+
+
+    for i in num_1:
+        for u in num_2:
+            i = int(i)
+            u = int(u)
+
+            if i + u == 2020:
+                return f"{i} and {u} add up to make {i + u}, and their product is {i * u}"
+
+print(find_sum())
