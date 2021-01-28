@@ -1,6 +1,6 @@
 import math
 
-file = open('key.txt')
+file = open('inputD1P2.txt')
 nums = file.read().replace("\n", " ").split()
 file.close()
 

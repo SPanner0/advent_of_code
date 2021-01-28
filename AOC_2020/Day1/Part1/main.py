@@ -1,6 +1,9 @@
 import math
 import random
-from key import nums
+
+file = open('inputD1P1.txt')
+nums = file.read().replace("\n", " ").split()
+file.close()
 
 num_1 = nums
 num_2 = nums
