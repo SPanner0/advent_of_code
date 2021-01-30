@@ -3,9 +3,11 @@ import random
 
 file_path = "AOC_2020\\"
 
+# Reads input from txt file
 with open(f'{file_path}Day1\\Part1\\inputD1P1.txt', 'r') as f:
     nums = f.read().split('\n')
 
+# Makes a copy of each list
 num_1 = nums[:]
 num_2 = nums[:]
 
