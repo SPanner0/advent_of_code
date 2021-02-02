@@ -1,8 +1,6 @@
 import math
-import re
-import json
 
-with open("AOC_2020\\Day2\\Part1\\inputD2P1.txt", 'r') as f:
+with open("AOC_2020\\Day2\\input.txt", 'r') as f:
     dt = f.read().split('\n')
 
 
@@ -29,3 +27,4 @@ def validate_password():
 
 
 print(validate_password())
+
