@@ -14,6 +14,7 @@ num_2 = nums[:]
 
 def find_sum():
 
+# Nested loop to check through every pair of numbers
 
     for i in num_1:
         for u in num_2:
