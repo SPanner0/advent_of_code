@@ -1,7 +1,7 @@
 import math
 
 # Reads input from txt file
-with open('AOC_2020\\Day 1\\input.txt', 'r') as f:
+with open('AOC_2020\\Day_1\\input.txt', 'r') as f:
     dt = f.read().split('\n')
 
 
