@@ -1,3 +1,5 @@
+import re
+
 with open("AOC_2020\\Day_4\\input.txt") as f:
     dt = f.read()
 
@@ -48,3 +50,67 @@ def passport_validator():
     return valid_passport_count
 
 print(passport_validator())
+
+def passport_validator_2():
+    """ This function is for finding the answer to Part 2 """
+    # Variable for storing the number of valid passports
+    valid_passport_count = int(0)
+
+    # Loops through each passport entry yielded from passport_parse
+    for entry in passport_parse():
+
+        # For the start of each loop, set each of these variables to False
+        byr_check = False
+        iyr_check = False
+        eyr_check = False
+        hgt_check = False
+        hcl_check = False
+        ecl_check = False
+        pid_check = False
+
+        # Checks byr, iyr, eyr to see if they fall within the needed integer range and that they each contain 4 digits
+        if entry.get('byr') != None and 1920 <= int(entry.get('byr')) <= 2002 and len(str(entry.get('byr'))) == 4:
+            byr_check = True
+
+        if entry.get('iyr') != None and 2010 <= int(entry.get('iyr')) <= 2020 and len(str(entry.get('iyr'))) == 4:
+            iyr_check = True
+
+        if entry.get('eyr') != None and 2020 <= int(entry.get('eyr')) <= 2030 and len(str(entry.get('eyr'))) == 4:
+            eyr_check = True
+
+        # Checks if hgt entry ends with 'cm', then checks if the integer falls within the wanted range
+        if entry.get('hgt') != None and entry.get('hgt').endswith('cm'):
+
+            if 150 <= int(''.join(i for i in entry.get('hgt') if i.isdigit())) <= 193:
+                hgt_check = True
+
+        # Same with last if statement, except it checks if the entry ends with 'in'
+        if entry.get('hgt') != None and entry.get('hgt').endswith('in'):
+
+            if 59 <= int(''.join(i for i in entry.get('hgt') if i.isdigit())) <= 76:
+                hgt_check = True
+
+        # Checks if the length of hcl entry is 7 and if the first character is a #
+        if entry.get('hcl') != None and len(entry.get('hcl')) == 7 and entry.get('hcl')[0] == '#':
+            
+            # Using regex, search if every character after the first is either a digit, or a letter between a and f
+            if not bool(re.compile(r'[^0-9a-f.]').search(entry.get('hcl')[1:])):
+                hcl_check = True
+
+        # Checks if ecl entry is one of the listed options
+        if entry.get('ecl') != None and entry.get('ecl') in 'amb blu brn gry grn hzl oth'.split(' '):
+            ecl_check = True
+
+        # Checks if pid only contains 9 digits
+        if entry.get('pid') != None and entry.get('pid').isdigit() and len(str(entry.get('pid'))) == 9:
+            pid_check = True
+
+        # If every check was set to True, increment valid_passport_count by 1
+        if byr_check == True and iyr_check == True and eyr_check == True and hgt_check == True and hcl_check == True and ecl_check == True and pid_check == True:
+            valid_passport_count += 1
+
+    return f"The number of valid passports for Part 2 is {valid_passport_count}"
+
+
+
+print(passport_validator_2())
