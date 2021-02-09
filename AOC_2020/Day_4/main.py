@@ -106,7 +106,7 @@ def passport_validator_2():
             pid_check = True
 
         # If every check was set to True, increment valid_passport_count by 1
-        if byr_check == True and iyr_check == True and eyr_check == True and hgt_check == True and hcl_check == True and ecl_check == True and pid_check == True:
+        if byr_check and iyr_check and eyr_check and hgt_check and hcl_check and ecl_check and pid_check:
             valid_passport_count += 1
 
     return f"The number of valid passports for Part 2 is {valid_passport_count}"
